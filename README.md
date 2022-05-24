@@ -2,11 +2,6 @@
 
 I was unable to find an app that blocks apps based on time-usage. This is an attempt to see what I can do on my own.
 
-I will query a local Qbserve database (updated hourly) to check the app useage. I still don't know how I will block apps. Ideally I use some other implementation like Self-Control but I might also use the `psutil` library.
+Notes in: https://www.notion.so/avery2/QbserveBlocker-883a2b8652eb45b4a0d0b07477871d93.
 
-<div align="center">
-  
-  <img width="916" alt="Screen Shot 2022-05-23 at 10 55 35 PM" src="https://user-images.githubusercontent.com/53503018/169959154-23709c2a-d70f-4f19-9c7d-14d18379e753.png">
-  <p><em>Backup feature from Qbserve that I am using.</em></p>
-
-</div>
+Gave up once I found a suitable solution using Freedom to schedule blocks on certain applications. I still want a time-based block as well, but this was good enough to the end project.
