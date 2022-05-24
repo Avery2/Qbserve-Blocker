@@ -1,0 +1,246 @@
+---
+title: "exporation"
+author: "Avery Chan"
+date: "5/23/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lubridate)
+```
+
+```{r}
+Categories <- read_csv("data/Categories.csv")
+Apps <- read_csv("data/Apps.csv")
+Activities <- read_csv("data/Activities.csv")
+HistoryTablesIndex <- read_csv("data/HistoryTablesIndex.csv")
+LastScheduledExport <- read_csv("data/LastScheduledExport.csv")
+LastBackup <- read_csv("data/LastBackup.csv")
+Notes <- read_csv("data/Notes.csv")
+Projects <- read_csv("data/Projects.csv")
+Rules <- read_csv("data/Rules.csv")
+Invoices <- read_csv("data/Invoices.csv")
+InvoiceRanges <- read_csv("data/InvoiceRanges.csv")
+InvoiceItems <- read_csv("data/InvoiceItems.csv")
+InvoiceRates <- read_csv("data/InvoiceRates.csv")
+Alerts <- read_csv("data/Alerts.csv")
+AlertWebhooks <- read_csv("data/AlertWebhooks.csv")
+AlertWebhookParameters <- read_csv("data/AlertWebhookParameters.csv")
+AlertScripts <- read_csv("data/AlertScripts.csv")
+Reminders <- read_csv("data/Reminders.csv")
+ManualActivities <- read_csv("data/ManualActivities.csv")
+z_HistoryLog_2021_4 <- read_csv("data/z_HistoryLog_2021_4.csv")
+z_HistoryLog_2021_5 <- read_csv("data/z_HistoryLog_2021_5.csv")
+z_HistoryLog_2021_6 <- read_csv("data/z_HistoryLog_2021_6.csv")
+z_HistoryLog_2021_7 <- read_csv("data/z_HistoryLog_2021_7.csv")
+z_HistoryLog_2021_8 <- read_csv("data/z_HistoryLog_2021_8.csv")
+z_HistoryLog_2021_9 <- read_csv("data/z_HistoryLog_2021_9.csv")
+z_HistoryLog_2021_10 <- read_csv("data/z_HistoryLog_2021_10.csv")
+z_HistoryLog_2021_11 <- read_csv("data/z_HistoryLog_2021_11.csv")
+z_HistoryLog_2021_12 <- read_csv("data/z_HistoryLog_2021_12.csv")
+z_HistoryLog_2022_1 <- read_csv("data/z_HistoryLog_2022_1.csv")
+z_HistoryLog_2022_2 <- read_csv("data/z_HistoryLog_2022_2.csv")
+z_HistoryLog_2022_3 <- read_csv("data/z_HistoryLog_2022_3.csv")
+z_HistoryLog_2022_4 <- read_csv("data/z_HistoryLog_2022_4.csv")
+z_HistoryLog_2022_5 <- read_csv("data/z_HistoryLog_2022_5.csv")
+
+# <- left_join(z_HistoryLog_2022_5, Activities %>% select(`_id`, title), by = "_id")
+
+z_HistoryLog_2021_4 <- left_join(z_HistoryLog_2021_4, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2021_5 <- left_join(z_HistoryLog_2021_5, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2021_6 <- left_join(z_HistoryLog_2021_6, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2021_7 <- left_join(z_HistoryLog_2021_7, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2021_8 <- left_join(z_HistoryLog_2021_8, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2021_9 <- left_join(z_HistoryLog_2021_9, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2021_10 <- left_join(z_HistoryLog_2021_10, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2021_11 <- left_join(z_HistoryLog_2021_11, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2021_12 <- left_join(z_HistoryLog_2021_12, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2022_1 <- left_join(z_HistoryLog_2022_1, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2022_2 <- left_join(z_HistoryLog_2022_2, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2022_3 <- left_join(z_HistoryLog_2022_3, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2022_4 <- left_join(z_HistoryLog_2022_4, Activities %>% select(`_id`, title), by="_id")
+z_HistoryLog_2022_5 <- left_join(z_HistoryLog_2022_5, Activities %>% select(`_id`, title), by="_id")
+
+# this is wrong, but it's what I want
+# z_HistoryLog_2021_4 <- left_join(z_HistoryLog_2021_4, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2021_5 <- left_join(z_HistoryLog_2021_5, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2021_6 <- left_join(z_HistoryLog_2021_6, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2021_7 <- left_join(z_HistoryLog_2021_7, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2021_8 <- left_join(z_HistoryLog_2021_8, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2021_9 <- left_join(z_HistoryLog_2021_9, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2021_10 <- left_join(z_HistoryLog_2021_10, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2021_11 <- left_join(z_HistoryLog_2021_11, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2021_12 <- left_join(z_HistoryLog_2021_12, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2022_1 <- left_join(z_HistoryLog_2022_1, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2022_2 <- left_join(z_HistoryLog_2022_2, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2022_3 <- left_join(z_HistoryLog_2022_3, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2022_4 <- left_join(z_HistoryLog_2022_4, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+# z_HistoryLog_2022_5 <- left_join(z_HistoryLog_2022_5, Apps %>% select(`_id`, localized_name), by="_id") %>% rename(title = localized_name)
+```
+
+```{r}
+Categories
+Apps
+Activities
+HistoryTablesIndex
+# LastScheduledExport
+# LastBackup
+# Notes
+# Projects
+# Rules
+# Invoices
+# InvoiceRanges
+# InvoiceItems
+# InvoiceRates
+# Alerts
+# AlertWebhooks
+# AlertWebhookParameters
+# AlertScripts
+# Reminders
+# ManualActivities
+```
+
+
+```{r}
+z_HistoryLog_2021_4
+z_HistoryLog_2021_5
+z_HistoryLog_2021_6
+z_HistoryLog_2021_7
+z_HistoryLog_2021_8
+z_HistoryLog_2021_9
+z_HistoryLog_2021_10
+z_HistoryLog_2021_11
+z_HistoryLog_2021_12
+z_HistoryLog_2022_1
+z_HistoryLog_2022_2
+z_HistoryLog_2022_3
+z_HistoryLog_2022_4
+z_HistoryLog_2022_5
+```
+
+```{r}
+z_HistoryLog_2022_5 %>% 
+  group_by(activity_id) %>%
+  summarise(
+    n = n(),
+    sum(duration)
+  ) %>% 
+  arrange(
+    -`sum(duration)`
+  )
+```
+```{r}
+Activities %>% filter(`_id` == 17794)
+
+Apps %>% filter(str_detect(localized_name, regex('rimworld', ignore_case = T)))
+Activities %>% filter(str_detect(title, regex('rimworld', ignore_case = T)))
+
+Activities$`_id` %>% max()
+Apps$`_id` %>% max()
+```
+```{r}
+#  z_HistoryLog_2022_5_w_title <- left_join(z_HistoryLog_2022_5, Activities %>% select(`_id`, title), by = "_id")
+# z_HistoryLog_2022_5_w_title %>% 
+#   group_by(title) %>%
+#   summarise(
+#     n = n(),
+#     sum(duration)
+#   ) %>% 
+#   arrange(
+#     -`sum(duration)`
+#   )
+# HistoryTablesIndex %>% 
+#   arrange(-start_date)
+```
+```{r}
+# z_HistoryLog_2021_4 %>% select(activity_id, start_time, duration, title) %>% group_by(title) %>% summarise(n = n(), activity_id, start_time, duration, title) %>% arrange(-n)
+
+full_history <- list(
+                     z_HistoryLog_2021_4, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2021_5, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2021_6, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2021_7, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2021_8, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2021_9, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2021_10, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2021_11, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2021_12, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2022_1, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2022_2, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2022_3, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2022_4, # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     z_HistoryLog_2022_5 # %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+                     ) %>%
+                reduce(full_join) %>%
+                select(activity_id, start_time, duration, title)
+full_history$`activity_id` %>% max()
+```
+
+
+```{r}
+# full_join(
+#   z_HistoryLog_2022_4 %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0),
+#   z_HistoryLog_2022_5 %>% select(activity_id, start_time, duration, title) %>% drop_na() %>% filter(duration > 0)
+# )
+```
+
+
+```{r}
+# z_HistoryLog_2022_5_w_title %>%
+#   select(title, duration, start_time) %>%
+#   # drop_na() %>% 
+#   group_by(title) %>%
+#   summarise(n = n(),
+#             total_duration = sum(duration),
+#             latest_time = max(start_time),
+#             latest_time_dt = as_datetime(max(start_time))) %>%
+#   # filter(latest_time > 1652317320) %>%
+#   filter(str_detect(title, "RimWorld")) %>% 
+#   arrange(-`total_duration`) %>%
+#   select(title, total_duration, everything())
+#   # arrange(-latest_time) %>%
+#   # select(title, latest_time_dt, everything())
+```
+```{r}
+# data.frame(nums = c(
+#   3,56,8,2,3,5,6,1,1,3,5,9
+# )) %>% arrange(-nums)
+
+# foo <- z_HistoryLog_2022_5_w_title %>%
+#   select(title, duration, start_time) %>%
+#   # drop_na() %>% 
+#   group_by(title) %>%
+#   summarise(n = n(),
+#             total_duration = sum(duration),
+#             latest_time = max(start_time)) %>%
+#   # arrange(-`total_duration`)
+#   arrange(-latest_time)
+```
+
+```{r}
+full_history %>%
+  # select(title, duration, start_time) %>%
+  # drop_na() %>% 
+  group_by(title) %>%
+  summarise(n = n(),
+            total_duration = sum(duration),
+            latest_time = max(start_time),
+            latest_time_dt = as_datetime(max(start_time))) %>%
+  # filter(latest_time > 1652317320) %>%
+  # filter(str_detect(title, "RimWorld")) %>% 
+  # filter(str_detect(title, 'code')) %>% 
+  arrange(-`total_duration`) %>%
+  select(title, total_duration, everything())
+  # arrange(-latest_time) %>%
+  # select(title, latest_time_dt, everything())
+```
+```{r}
+manual_export <- read_csv("data/2022-05-01_2022-06-01.csv")
+```
+
+```{r}
+manual_export
+```
+
