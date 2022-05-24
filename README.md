@@ -16,3 +16,5 @@ I will query a local Qbserve database ~~(updated hourly)~~ (if you use `UserData
 ### Self-control?
 
 [Running SelfControl from the Terminal](https://github.com/SelfControlApp/selfcontrol/wiki/Running-SelfControl-from-the-Terminal)
+
+`/Applications/SelfControl.app/Contents/MacOS/selfcontrol-cli`
