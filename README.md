@@ -1,4 +1,4 @@
-# QbserveBlocker
+# Qbserve Blocker
 
 I was unable to find an app that blocks apps based on time-usage. This is an attempt to see what I can do on my own.
 
